@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="assets/JQuery/jquery-3.2.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/stylepage.css">
+  <title>Exercice 5</title>
+</head>
+<body>
+	<h1>Shifumi</h1>
+    <form>
+		<input type="radio" name="game" value=0 checked />
+		<label>Pierre</label>
+		<input type="radio" name="game" value=1 />
+		<label>Feuille</label>
+		<input type="radio" name="game" value=2 />
+		<label>Ciseau</label>
+		<input type="button" id="submit" name="submit" value="Shifumi">
+    </form>
+    <label>Victoire</label>
+    <input type="text" id="victory" name="victory" value=0 disabled>
+    <label>Défaite</label>
+    <input type="text" id="defeat" name="defeat" value=0 disabled>
+    <label>Pourcentage de Victoire</label>
+    <input type="text" id="victoryStat" name="victoryStat" value='Not defind' disabled>
+  <script>
+	$('#submit').click(function(event){
+		var result = Math.ceil(Math.random()*3);
+		var choice = $('input[name=game]:checked').val();
+		if(result!=choice){
+			$('#defeat').val(parseInt($('#defeat').val())+1);
+		} else {
+			$('#victory').val(parseInt($('#victory').val())+1);
+		}
+		$('#victoryStat').val(parseFloat((parseInt($('#victory').val())/(parseInt($('#defeat').val())+parseInt($('#victory').val())))*100).toFixed(2)+"%");
+  });
+</script>
+</body>
+</html>
